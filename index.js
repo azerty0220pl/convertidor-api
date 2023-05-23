@@ -37,7 +37,7 @@ mongoose.connect(process.env.MONGO_URI).then(() => {
     });
 
     app.delete("/delete/:entry", (req, res) => {
-        this.entry.findOneAndRemove(req.entry).then(() => {
+        this.entry.findOneAndRemove(JSON.parse(req.params.entry)).then(() => {
             res.send({status: "succes"});
         }).catch(err => {
             res.send({status: "error"});
